@@ -41,16 +41,6 @@ function searchData() {
     // Filter the dataset to return the results for the date selected
     var filtered_date = table_data.filter(data => data.datetime === date_value);
 
-    // Create arrays for each item from the dataset corresponding to the selected date
-    // Save this for later, might be useful for creating more filters
-    // var date = filtered_date.map(data => data.datetime);
-    // var city = filtered_date.map(data => data.city);
-    // var state = filtered_date.map(data => data.state);
-    // var country = filtered_date.map(data => data.country);
-    // var shape = filtered_date.map(data => data.shape);
-    // var duration = filtered_date.map(data => data.durationMinutes);
-    // var comment = filtered_date.map(data => data.comment);
-
     // Select the table body by ID, where table rows will be created for each element
     var tbody = d3.select("tbody");
 

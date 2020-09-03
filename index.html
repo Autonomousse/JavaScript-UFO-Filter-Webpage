@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/superhero/bootstrap.min.css">
   <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
-  <link rel="stylesheet" href="static/css/style.css">
+  <link rel="stylesheet" href="UFO-level-2/static/css/style.css">
 </head>
 
 <body>
@@ -16,7 +16,7 @@
       <div class="container-fluid">
         <div class="navbar-header">
           <a class="navbar-brand" href="index.html">UFO Sightings
-            <img class="nav-ufo" src="static/images/ufo.svg">
+            <img class="nav-ufo" src="UFO-level-2/static/images/ufo.svg">
           </a>
         </div>
       </div>
@@ -35,8 +35,36 @@
                 <form>
                   <div class="form-group">
                     <label>Date</label>
-                    <select class="custom-select">
-                    <option selected>Click to Select</option>
+                    <select class="custom-select" id="date">
+                    <option selected></option>
+                    <!-- This is where the date elements will be populated in the dropdown menu -->
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label>Country</label>
+                    <select class="custom-select" id="country">
+                    <option selected></option>
+                    <!-- This is where the date elements will be populated in the dropdown menu -->
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label>State</label>
+                    <select class="custom-select" id="state">
+                    <option selected></option>
+                    <!-- This is where the date elements will be populated in the dropdown menu -->
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label>City</label>
+                    <select class="custom-select" id="city">
+                    <option selected></option>
+                    <!-- This is where the date elements will be populated in the dropdown menu -->
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label>Shape</label>
+                    <select class="custom-select" id="shape">
+                    <option selected></option>
                     <!-- This is where the date elements will be populated in the dropdown menu -->
                     </select>
                   </div>
@@ -71,8 +99,8 @@
     </footer>
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.11.0/d3.js"></script>
-  <script src="static/js/data.js"></script>
-  <script src="static/js/app.js"></script>
+  <script src="UFO-level-2/static/js/data.js"></script>
+  <script src="UFO-level-2/static/js/app.js"></script>
 </body>
 
 </html>

@@ -66,40 +66,110 @@ function searchData() {
     var city = city_element.property("value");
     var shape = shape_element.property("value");
 
-    var check = [{ "datetime": datetime, "country": country, "state": state, "city": city, "shape": shape }]
-    console.log(check)
-    check.forEach(items => {
-        Object.entries(items).forEach(([key, value]) => {
-            if (value !== "") {
-                var searchKey = key;
-                var searchVal = value;
-                if (searchKey == "datetime") {
-                    var filter_date = table_data.filter(data => data.datetime === searchVal);
-                    returnData(filter_date);
-                }
-                if (searchKey == "country") {
-                    var filter_country = table_data.filter(data => data.country === searchVal);
-                    returnData(filter_country);
-                }
 
-                if (searchKey == "state") {
-                    var filter_state = table_data.filter(data => data.state === searchVal);
-                    returnData(filter_state);
-                }
-
-                if (searchKey == "city") {
-                    var filter_city = table_data.filter(data => data.city === searchVal);
+    if (datetime !== "") {
+        var filter_date = table_data.filter(data => data.datetime === datetime);
+        returnData(filter_date);
+        if(datetime !== "" && country !== "") {
+            var filter_country = filter_date.filter(data => data.country === country);
+            returnData(filter_country);
+            if(datetime !== "" && country !== "" && state !== "") {
+                var filter_state = filter_country.filter(data => data.state === state);
+                returnData(filter_state);
+                if(datetime !== "" && country !== "" && state !== "" && city !== "") {
+                    var filter_city = filter_state.filter(data => data.city === city);
                     returnData(filter_city);
+                    if(datetime !== "" && country !== "" && state !== "" && city !== "" && shape !== "") {
+                        var filter_shape = filter_city.filter(data => data.shape === shape);
+                        returnData(filter_shape);
+                    }
                 }
-
-                if (searchKey == "shape") {
-                    var filter_shape = table_data.filter(data => data.shape === searchVal);
+                if(datetime !== "" && country !== "" && state !== "" && shape !== "") {
+                    var filter_shape = filter_state.filter(data => data.shape === shape);
                     returnData(filter_shape);
                 }
-
             }
-        })
-    })
+            if(datetime !== "" && country !== "" && city !== "") {
+                var filter_city = filter_country.filter(data => data.city === city);
+                returnData(filter_city);
+                if(datetime !== "" && country !== "" && city !== "" && shape !== "") {
+                    var filter_shape = filter_city.filter(data => data.shape === shape);
+                    returnData(filter_shape);
+                }
+            }
+            if(datetime !== "" && country !== "" && shape !== "") {
+                var filter_shape = filter_country.filter(data => data.shape === shape);
+                returnData(filter_shape);
+            }
+        }
+        if(datetime !== "" && state !== "") {
+            var filter_state = filter_date.filter(data => data.state === state);
+            returnData(filter_state);
+            if(datetime !== "" && state !== "" && city !== "") {
+                var filter_city = filter_state.filter(data => data.city === city);
+                returnData(filter_city);
+                if(datetime !== "" && state !== "" && city !== "" && shape !== "") {
+                    var filter_shape = filter_city.filter(data => data.shape === shape);
+                    returnData(filter_shape);
+                }
+            }
+            if(datetime !== "" && state !== "" && shape !== "") {
+                var filter_shape = filter_state.filter(data => data.shape === shape);
+                returnData(filter_shape);
+            }
+        }
+        if(datetime !== "" && city !== "") {
+            var filter_city = filter_date.filter(data => data.city === city);
+            returnData(filter_city);
+            if(datetime !== "" && city !== "" && shape !== "") {
+                var filter_shape = filter_city.filter(data => data.shape === shape);
+                returnData(filter_shape);
+            }
+        }
+        if(datetime !== "" && shape !== "") {
+            var filter_shape = filter_date.filter(data => data.shape === shape);
+            returnData(filter_shape);
+        }
+    }
+    if (datetime !== "") {
+        var filter_date = table_data.filter(data => data.datetime === datetime);
+        returnData(filter_date);
+    
+    //var check = [{ "datetime": datetime, "country": country, "state": state, "city": city, "shape": shape }]
+    
+    // console.log(check)
+    // check.forEach(items => {
+    //     Object.entries(items).forEach(([key, value]) => {
+    //         if (value !== "") {
+    //             var searchKey = key;
+    //             var searchVal = value;
+    //             if (searchKey == "datetime") {
+    //                 var filter_date = table_data.filter(data => data.datetime === searchVal);
+    //                 var date = returnData(filter_date);
+    //             }
+    //             if (searchKey == "country") {
+    //                 var filter_country = table_data.filter(data => data.country === searchVal);
+    //                 var country = returnData(filter_country);
+    //             }
+
+    //             if (searchKey == "state") {
+    //                 var filter_state = table_data.filter(data => data.state === searchVal);
+    //                 var state = returnData(filter_state);
+    //             }
+
+    //             if (searchKey == "city") {
+    //                 var filter_city = table_data.filter(data => data.city === searchVal);
+    //                 var city = returnData(filter_city);
+    //             }
+
+    //             if (searchKey == "shape") {
+    //                 var filter_shape = table_data.filter(data => data.shape === searchVal);
+    //                 var shape = returnData(filter_shape);
+    //             }
+
+    //         }
+    //     })
+    // })
 
     // console.log(lol);
 

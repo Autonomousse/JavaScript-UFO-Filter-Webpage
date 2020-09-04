@@ -4,23 +4,24 @@ var table_data = data;
 // Use the map function to create a new array with all of the item values from the dataset.
 // Call the createArrays function to retreive options to display on the dropdown for users to select from.
 var date = table_data.map(dates => dates.datetime);
-createArrays(date, "#date");
+createOptions(date, "#date");
 
 var country = table_data.map(countries => countries.country).sort();
-createArrays(country, "#country");
+createOptions(country, "#country");
 
 var state = table_data.map(states => states.state).sort();
-createArrays(state, "#state");
+createOptions(state, "#state");
 
 var city = table_data.map(cities => cities.city).sort();
-createArrays(city, "#city");
+createOptions(city, "#city");
 
 var shape = table_data.map(shapes => shapes.shape).sort();
-createArrays(shape, "#shape");
+createOptions(shape, "#shape");
 
 // Select the button ID
 // Select the form where the user enters the date
 var filter_button = d3.select("#filter-btn");
+var reset_button = d3.select(".reset");
 var dateSelect = d3.select("#date");
 var countrySelect = d3.select("#country");
 var stateSelect = d3.select("#state");
@@ -29,6 +30,7 @@ var shapeSelect = d3.select("#shape");
 
 // Create event handlers for the user input and button click
 filter_button.on("click", searchData);
+reset_button.on("click", reset);
 dateSelect.on("submit");
 countrySelect.on("submit");
 stateSelect.on("submit");
@@ -40,7 +42,7 @@ shapeSelect.on("submit");
  *  Select the selection dropdown where the options will be populated.
  *  Use the forEach function to loop through each unique value and create a dropdown option for it.
  */
-function createArrays(value, id) {
+function createOptions(value, id) {
     var unique = Array.from(new Set(value));
     var options = d3.select(`${id}`);
     unique.forEach(item => options.append("option").text(`${item}`));
@@ -66,137 +68,163 @@ function searchData() {
     var city = city_element.property("value");
     var shape = shape_element.property("value");
 
-
-    if (datetime !== "") {
-        var filter_date = table_data.filter(data => data.datetime === datetime);
-        returnData(filter_date);
-        if(datetime !== "" && country !== "") {
-            var filter_country = filter_date.filter(data => data.country === country);
-            returnData(filter_country);
-            if(datetime !== "" && country !== "" && state !== "") {
-                var filter_state = filter_country.filter(data => data.state === state);
-                returnData(filter_state);
-                if(datetime !== "" && country !== "" && state !== "" && city !== "") {
-                    var filter_city = filter_state.filter(data => data.city === city);
-                    returnData(filter_city);
-                    if(datetime !== "" && country !== "" && state !== "" && city !== "" && shape !== "") {
-                        var filter_shape = filter_city.filter(data => data.shape === shape);
+    var h4 = d3.select("h4");
+    h4.text("");
+    try {
+        if (datetime !== "") {
+            var filter_date = table_data.filter(data => data.datetime === datetime);
+            returnData(filter_date);
+            if (datetime !== "" && country !== "") {
+                var filter_country = filter_date.filter(data => data.country === country);
+                returnData(filter_country);
+                if (filter_country.length == 0) throw "Looks like nothing fits within your search parameter, please try again!";
+                if (datetime !== "" && country !== "" && state !== "") {
+                    var filter_state = filter_country.filter(data => data.state === state);
+                    returnData(filter_state);
+                    if (filter_state.length == 0) throw "Looks like nothing fits within your search parameter, please try again!";
+                    if (datetime !== "" && country !== "" && state !== "" && city !== "") {
+                        var filter_city = filter_state.filter(data => data.city === city);
+                        returnData(filter_city);
+                        if (filter_city.length == 0) throw "Looks like nothing fits within your search parameter, please try again!";
+                        if (datetime !== "" && country !== "" && state !== "" && city !== "" && shape !== "") {
+                            var filter_shape = filter_city.filter(data => data.shape === shape);
+                            returnData(filter_shape);
+                            if (filter_shape.length == 0) throw "Looks like nothing fits within your search parameter, please try again!";
+                        }
+                    }
+                    else if (datetime !== "" && country !== "" && state !== "" && shape !== "") {
+                        var filter_shape = filter_state.filter(data => data.shape === shape);
                         returnData(filter_shape);
+                        if (filter_shape.length == 0) throw "Looks like nothing fits within your search parameter, please try again!";
                     }
                 }
-                else if(datetime !== "" && country !== "" && state !== "" && shape !== "") {
+                else if (datetime !== "" && country !== "" && city !== "") {
+                    var filter_city = filter_country.filter(data => data.city === city);
+                    returnData(filter_city);
+                    if (filter_city.length == 0) throw "Looks like nothing fits within your search parameter, please try again!";
+                    if (datetime !== "" && country !== "" && city !== "" && shape !== "") {
+                        var filter_shape = filter_city.filter(data => data.shape === shape);
+                        returnData(filter_shape);
+                        if (filter_shape.length == 0) throw "Looks like nothing fits within your search parameter, please try again!";
+                    }
+                }
+                else if (datetime !== "" && country !== "" && shape !== "") {
+                    var filter_shape = filter_country.filter(data => data.shape === shape);
+                    returnData(filter_shape);
+                    if (filter_shape.length == 0) throw "Looks like nothing fits within your search parameter, please try again!";
+                }
+            }
+            else if (datetime !== "" && state !== "") {
+                var filter_state = filter_date.filter(data => data.state === state);
+                returnData(filter_state);
+                if (filter_state.length == 0) throw "Looks like nothing fits within your search parameter, please try again!";
+                if (datetime !== "" && state !== "" && city !== "") {
+                    var filter_city = filter_state.filter(data => data.city === city);
+                    returnData(filter_city);
+                    if (filter_city.length == 0) throw "Looks like nothing fits within your search parameter, please try again!";
+                    if (datetime !== "" && state !== "" && city !== "" && shape !== "") {
+                        var filter_shape = filter_city.filter(data => data.shape === shape);
+                        returnData(filter_shape);
+                        if (filter_shape.length == 0) throw "Looks like nothing fits within your search parameter, please try again!";
+                    }
+                }
+                else if (datetime !== "" && state !== "" && shape !== "") {
                     var filter_shape = filter_state.filter(data => data.shape === shape);
                     returnData(filter_shape);
+                    if (filter_shape.length == 0) throw "Looks like nothing fits within your search parameter, please try again!";
                 }
             }
-            else if(datetime !== "" && country !== "" && city !== "") {
+            else if (datetime !== "" && city !== "") {
+                var filter_city = filter_date.filter(data => data.city === city);
+                returnData(filter_city);
+                if (filter_city.length == 0) throw "Looks like nothing fits within your search parameter, please try again!";
+                if (datetime !== "" && city !== "" && shape !== "") {
+                    var filter_shape = filter_city.filter(data => data.shape === shape);
+                    returnData(filter_shape);
+                    if (filter_shape.length == 0) throw "Looks like nothing fits within your search parameter, please try again!";
+                }
+            }
+            else if (datetime !== "" && shape !== "") {
+                var filter_shape = filter_date.filter(data => data.shape === shape);
+                returnData(filter_shape);
+                if (filter_shape.length == 0) throw "Looks like nothing fits within your search parameter, please try again!";
+            }
+        }
+        else if (country !== "") {
+            var filter_country = table_data.filter(data => data.country === country);
+            returnData(filter_country);
+            if (country !== "" && state !== "") {
+                var filter_state = filter_country.filter(data => data.state === state);
+                returnData(filter_state);
+                if (filter_state.length == 0) throw "Looks like nothing fits within your search parameter, please try again!";
+                if (country !== "" && state !== "" && city !== "") {
+                    var filter_city = filter_state.filter(data => data.city === city);
+                    returnData(filter_city);
+                    if (filter_city.length == 0) throw "Looks like nothing fits within your search parameter, please try again!";
+                    if (country !== "" && state !== "" && city !== "" && shape !== "") {
+                        var filter_shape = filter_city.filter(data => data.shape === shape);
+                        returnData(filter_shape);
+                        if (filter_shape.length == 0) throw "Looks like nothing fits within your search parameter, please try again!";
+                    }
+                }
+                else if (country !== "" && state !== "" && shape !== "") {
+                    var filter_shape = filter_state.filter(data => data.shape === shape);
+                    returnData(filter_shape);
+                    if (filter_shape.length == 0) throw "Looks like nothing fits within your search parameter, please try again!";
+                }
+            }
+            else if (country !== "" && city !== "") {
                 var filter_city = filter_country.filter(data => data.city === city);
                 returnData(filter_city);
-                if(datetime !== "" && country !== "" && city !== "" && shape !== "") {
+                if (filter_city.length == 0) throw "Looks like nothing fits within your search parameter, please try again!";
+                if (country !== "" && city !== "" && shape !== "") {
                     var filter_shape = filter_city.filter(data => data.shape === shape);
                     returnData(filter_shape);
+                    if (filter_shape.length == 0) throw "Looks like nothing fits within your search parameter, please try again!";
                 }
             }
-            else if(datetime !== "" && country !== "" && shape !== "") {
+            else if (country !== "" && shape !== "") {
                 var filter_shape = filter_country.filter(data => data.shape === shape);
                 returnData(filter_shape);
+                if (filter_shape.length == 0) throw "Looks like nothing fits within your search parameter, please try again!";
             }
         }
-        else if(datetime !== "" && state !== "") {
-            var filter_state = filter_date.filter(data => data.state === state);
+        else if (state !== "") {
+            var filter_state = table_data.filter(data => data.state === state);
             returnData(filter_state);
-            if(datetime !== "" && state !== "" && city !== "") {
+            if (state !== "" && city !== "") {
                 var filter_city = filter_state.filter(data => data.city === city);
                 returnData(filter_city);
-                if(datetime !== "" && state !== "" && city !== "" && shape !== "") {
+                if (filter_city.length == 0) throw "Looks like nothing fits within your search parameter, please try again!";
+                if (state !== "" && city !== "" && shape !== "") {
                     var filter_shape = filter_city.filter(data => data.shape === shape);
                     returnData(filter_shape);
+                    if (filter_shape.length == 0) throw "Looks like nothing fits within your search parameter, please try again!";
                 }
             }
-            else if(datetime !== "" && state !== "" && shape !== "") {
+            else if (state !== "" && shape !== "") {
                 var filter_shape = filter_state.filter(data => data.shape === shape);
                 returnData(filter_shape);
+                if (filter_shape.length == 0) throw "Looks like nothing fits within your search parameter, please try again!";
             }
         }
-        else if(datetime !== "" && city !== "") {
-            var filter_city = filter_date.filter(data => data.city === city);
+        else if (city !== "") {
+            var filter_city = table_data.filter(data => data.city === city);
             returnData(filter_city);
-            if(datetime !== "" && city !== "" && shape !== "") {
+            if (city !== "" && shape !== "") {
                 var filter_shape = filter_city.filter(data => data.shape === shape);
                 returnData(filter_shape);
+                if (filter_shape.length == 0) throw "Looks like nothing fits within your search parameter, please try again!";
             }
         }
-        else if(datetime !== "" && shape !== "") {
-            var filter_shape = filter_date.filter(data => data.shape === shape);
+        else if (shape !== "") {
+            var filter_shape = table_data.filter(data => data.shape === shape);
             returnData(filter_shape);
         }
     }
-    else if (country !== "") {
-        var filter_country = table_data.filter(data => data.country === country);
-        returnData(filter_country);
-        if (country !== "" && state !== "") {
-            var filter_state = filter_country.filter(data => data.state === state);
-            returnData(filter_state);
-            if (country !== "" && state !== "" && city !== "") {
-                var filter_city = filter_state.filter(data => data.city === city);
-                returnData(filter_city);
-                if (country !== "" && state !== "" && city !== "" && shape !== "") {
-                    var filter_shape = filter_city.filter(data => data.shape === shape);
-                    returnData(filter_shape);
-                }
-            }
-            else if (country !== "" && state !== "" && shape !== "") {
-                var filter_shape = filter_state.filter(data => data.shape === shape);
-                returnData(filter_shape);
-            }
-        }
-        else if (country !== "" && city !== "") {
-            var filter_city = filter_country.filter(data => data.city === city);
-            returnData(filter_city);
-            if (country !== "" && city !== "" && shape !== "") {
-                var filter_shape = filter_city.filter(data => data.shape === shape);
-                returnData(filter_shape);
-            }
-        }
-        else if (country !== "" && shape !== "") {
-            var filter_shape = filter_country.filter(data => data.shape === shape);
-            returnData(filter_shape);
-        }
+    catch(err) {
+        h4.text(err);
     }
-    else if (state !== "") {
-        var filter_state = table_data.filter(data => data.state === state);
-        returnData(filter_state);
-        if (state !== "" && city !== "") {
-            var filter_city = filter_state.filter(data => data.city === city);
-            returnData(filter_city);
-            if (state !== "" && city !== "" && shape !== "") {
-                var filter_shape = filter_city.filter(data => data.shape === shape);
-                returnData(filter_shape);
-            }
-        }
-        else if (state !== "" && shape !== "") {
-            var filter_shape = filter_state.filter(data => data.shape === shape);
-            returnData(filter_shape);
-        }
-    }
-    else if (city !== "") {
-        var filter_city = table_data.filter(data => data.city === city);
-        returnData(filter_city);
-        if (city !== "" && shape !== "") {
-            var filter_shape = filter_city.filter(data => data.shape === shape);
-            returnData(filter_shape);
-        }
-    }
-    else if (shape !== "") {
-        var filter_shape = table_data.filter(data => data.shape === shape);
-        returnData(filter_shape);
-    }
-
-    datetime = "";
-    country = "";
-    state = "";
-    city = "";
-    shape = "";
 }
 
 function returnData(data) {
@@ -216,44 +244,7 @@ function returnData(data) {
     });
 }
 
-function searchState() {
-
-    // Prevent the page from refreshing
-    d3.event.preventDefault();
-
-    // Select the input element where the user enters the date and get the raw HTML node
-    var date_element = d3.select("#state");
-
-    // Get the value property of the input element (the date the user entered)
-    var date_value = date_element.property("value");
-
-    // Check to see that the correct value is stored (used for testing, commented out)
-    console.log(date_value)
-
-    // Filter the dataset to return the results for the date selected
-    var filtered_date = table_data.filter(data => data.state === date_value);
-
-    var state = filtered_date.map(states => states.date);
-    var unique_states = Array.from(new Set(state)).sort();
-    var state_options = d3.select("#date");
-    unique_states.forEach(states => state_options.append("option").text(`${states}`));
-
-    // Select the table body by ID, where table rows will be created for each element
-    var tbody = d3.select("tbody");
-
-    // Remove any children elements from the table
-    tbody.html("");
-
-    // Append each element in a new table data row
-    filtered_date.forEach(sighting => {
-        var row = tbody.append("tr");
-        Object.entries(sighting).forEach(([key, value]) => {
-            var info = row.append("td");
-            info.text(value);
-        });
-    });
-    sessionStorage.setItem("states", state_options);
-    sessionStorage.setItem("date", date_value);
-    //location.reload();
-
+function reset() {
+    // Reloads the page and clears the selections and form
+    location.reload();
 }

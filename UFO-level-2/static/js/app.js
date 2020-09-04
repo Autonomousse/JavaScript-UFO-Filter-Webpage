@@ -29,11 +29,11 @@ var shapeSelect = d3.select("#shape");
 
 // Create event handlers for the user input and button click
 filter_button.on("click", searchData);
-dateSelect.on("submit", searchData);
-countrySelect.on("submit", searchState);
-stateSelect.on("submit", searchState);
-citySelect.on("submit", searchData);
-shapeSelect.on("submit", searchState);
+dateSelect.on("submit");
+countrySelect.on("submit");
+stateSelect.on("submit");
+citySelect.on("submit");
+shapeSelect.on("submit");
 
 /* 
  *  Find only the unique values and create an array of unique values.
@@ -84,12 +84,12 @@ function searchData() {
                         returnData(filter_shape);
                     }
                 }
-                if(datetime !== "" && country !== "" && state !== "" && shape !== "") {
+                else if(datetime !== "" && country !== "" && state !== "" && shape !== "") {
                     var filter_shape = filter_state.filter(data => data.shape === shape);
                     returnData(filter_shape);
                 }
             }
-            if(datetime !== "" && country !== "" && city !== "") {
+            else if(datetime !== "" && country !== "" && city !== "") {
                 var filter_city = filter_country.filter(data => data.city === city);
                 returnData(filter_city);
                 if(datetime !== "" && country !== "" && city !== "" && shape !== "") {
@@ -97,12 +97,12 @@ function searchData() {
                     returnData(filter_shape);
                 }
             }
-            if(datetime !== "" && country !== "" && shape !== "") {
+            else if(datetime !== "" && country !== "" && shape !== "") {
                 var filter_shape = filter_country.filter(data => data.shape === shape);
                 returnData(filter_shape);
             }
         }
-        if(datetime !== "" && state !== "") {
+        else if(datetime !== "" && state !== "") {
             var filter_state = filter_date.filter(data => data.state === state);
             returnData(filter_state);
             if(datetime !== "" && state !== "" && city !== "") {
@@ -113,12 +113,12 @@ function searchData() {
                     returnData(filter_shape);
                 }
             }
-            if(datetime !== "" && state !== "" && shape !== "") {
+            else if(datetime !== "" && state !== "" && shape !== "") {
                 var filter_shape = filter_state.filter(data => data.shape === shape);
                 returnData(filter_shape);
             }
         }
-        if(datetime !== "" && city !== "") {
+        else if(datetime !== "" && city !== "") {
             var filter_city = filter_date.filter(data => data.city === city);
             returnData(filter_city);
             if(datetime !== "" && city !== "" && shape !== "") {
@@ -126,12 +126,12 @@ function searchData() {
                 returnData(filter_shape);
             }
         }
-        if(datetime !== "" && shape !== "") {
+        else if(datetime !== "" && shape !== "") {
             var filter_shape = filter_date.filter(data => data.shape === shape);
             returnData(filter_shape);
         }
     }
-    if (country !== "") {
+    else if (country !== "") {
         var filter_country = table_data.filter(data => data.country === country);
         returnData(filter_country);
         if (country !== "" && state !== "") {
@@ -145,12 +145,12 @@ function searchData() {
                     returnData(filter_shape);
                 }
             }
-            if (country !== "" && state !== "" && shape !== "") {
+            else if (country !== "" && state !== "" && shape !== "") {
                 var filter_shape = filter_state.filter(data => data.shape === shape);
                 returnData(filter_shape);
             }
         }
-        if (country !== "" && city !== "") {
+        else if (country !== "" && city !== "") {
             var filter_city = filter_country.filter(data => data.city === city);
             returnData(filter_city);
             if (country !== "" && city !== "" && shape !== "") {
@@ -158,184 +158,45 @@ function searchData() {
                 returnData(filter_shape);
             }
         }
-        if (country !== "" && shape !== "") {
+        else if (country !== "" && shape !== "") {
             var filter_shape = filter_country.filter(data => data.shape === shape);
             returnData(filter_shape);
         }
     }
-    
-    //var check = [{ "datetime": datetime, "country": country, "state": state, "city": city, "shape": shape }]
-    
-    // console.log(check)
-    // check.forEach(items => {
-    //     Object.entries(items).forEach(([key, value]) => {
-    //         if (value !== "") {
-    //             var searchKey = key;
-    //             var searchVal = value;
-    //             if (searchKey == "datetime") {
-    //                 var filter_date = table_data.filter(data => data.datetime === searchVal);
-    //                 var date = returnData(filter_date);
-    //             }
-    //             if (searchKey == "country") {
-    //                 var filter_country = table_data.filter(data => data.country === searchVal);
-    //                 var country = returnData(filter_country);
-    //             }
+    else if (state !== "") {
+        var filter_state = table_data.filter(data => data.state === state);
+        returnData(filter_state);
+        if (state !== "" && city !== "") {
+            var filter_city = filter_state.filter(data => data.city === city);
+            returnData(filter_city);
+            if (state !== "" && city !== "" && shape !== "") {
+                var filter_shape = filter_city.filter(data => data.shape === shape);
+                returnData(filter_shape);
+            }
+        }
+        else if (state !== "" && shape !== "") {
+            var filter_shape = filter_state.filter(data => data.shape === shape);
+            returnData(filter_shape);
+        }
+    }
+    else if (city !== "") {
+        var filter_city = table_data.filter(data => data.city === city);
+        returnData(filter_city);
+        if (city !== "" && shape !== "") {
+            var filter_shape = filter_city.filter(data => data.shape === shape);
+            returnData(filter_shape);
+        }
+    }
+    else if (shape !== "") {
+        var filter_shape = table_data.filter(data => data.shape === shape);
+        returnData(filter_shape);
+    }
 
-    //             if (searchKey == "state") {
-    //                 var filter_state = table_data.filter(data => data.state === searchVal);
-    //                 var state = returnData(filter_state);
-    //             }
-
-    //             if (searchKey == "city") {
-    //                 var filter_city = table_data.filter(data => data.city === searchVal);
-    //                 var city = returnData(filter_city);
-    //             }
-
-    //             if (searchKey == "shape") {
-    //                 var filter_shape = table_data.filter(data => data.shape === searchVal);
-    //                 var shape = returnData(filter_shape);
-    //             }
-
-    //         }
-    //     })
-    // })
-
-    // console.log(lol);
-
-
-
-
-    // data.forEach(sighting => {
-    //     var row = tbody.append("tr");
-    //     Object.entries(sighting).forEach(([key, value]) => {
-    //         var info = row.append("td");
-    //         info.text(value);
-    //     });
-    // });
-
-    // Check to see that the correct value is stored (used for testing, commented out)
-    // console.log(date_value)
-
-    // if (date_value == "Click to Select") {
-    //     var filtered_country = table_data.filter(data => data.country === country_value);
-    //     var filtered_state = filtered_country.filter(data => data.state === state_value);
-    //     var filtered_city = filtered_state.filter(data => data.city === city_value);
-    //     var filtered_shape = filtered_city.filter(data => data.shape === shape_value);
-    //     returnData(filtered_shape);
-    // }
-    // else {
-    //     var filtered_date = table_data.filter(data => data.datetime === date_value);
-    //     returnData(filtered_date)
-    // };
-
-    // if (date_value == "Click to Select" && country_value == "Click to Select") {
-    //     var filtered_state = table_data.filter(data => data.state === state_value);
-    //     var filtered_city = filtered_state.filter(data => data.city === city_value);
-    //     var filtered_shape = filtered_city.filter(data => data.shape === shape_value);
-    //     returnData(filtered_shape);
-    // }
-    // else if (date_value == "Click to Select" && state_value == "Click to Select") {
-    //     var filtered_country = table_data.filter(data => data.country === country_value);
-    //     var filtered_city = filtered_country.filter(data => data.city === city_value);
-    //     var filtered_shape = filtered_city.filter(data => data.shape === shape_value);
-    //     returnData(filtered_shape);
-    // }
-    // else if (date_value == "Click to Select" && city_value == "Click to Select") {
-    //     var filtered_country = table_data.filter(data => data.country === country_value);
-    //     var filtered_state = filtered_country.filter(data => data.state === state_value);
-    //     var filtered_shape = filtered_state.filter(data => data.shape === shape_value);
-    //     returnData(filtered_shape);
-    // }
-    // else if (date_value == "Click to Select" && shape_value == "Click to Select") {
-    //     var filtered_country = table_data.filter(data => data.country === country_value);
-    //     var filtered_state = filtered_country.filter(data => data.state === state_value);
-    //     var filtered_city = filtered_state.filter(data => data.city === city_value);
-    //     returnData(filtered_city);
-    // };
-
-    // if (date_value == "Click to Select" && country_value == "Click to Select" && state_value == "Click to Select") {
-    //     var filtered_city = table_data.filter(data => data.city === city_value);
-    //     var filtered_shape = filtered_city.filter(data => data.shape === shape_value);
-    //     returnData(filtered_shape);
-    // }
-    // else if (date_value == "Click to Select" && country_value == "Click to Select" && city_value == "Click to Select") {
-    //     var filtered_state = table_data.filter(data => data.state === state_value);
-    //     var filtered_shape = filtered_state.filter(data => data.shape === shape_value);
-    //     returnData(filtered_shape);
-    // }
-    // else if (date_value == "Click to Select" && country_value == "Click to Select" && shape_value == "Click to Select") {
-    //     var filtered_state = table_data.filter(data => data.state === state_value);
-    //     var filtered_city = filtered_state.filter(data => data.city === city_value);
-    //     returnData(filtered_city);
-    // }
-    // else if (date_value == "Click to Select" && state_value == "Click to Select" && city_value == "Click to Select") {
-    //     var filtered_country = table_data.filter(data => data.country === country_value);
-    //     var filtered_shape = filtered_country.filter(data => data.shape === shape_value);
-    //     returnData(filtered_shape);
-    // }
-    // else if (date_value == "Click to Select" && state_value == "Click to Select" && shape_value == "Click to Select") {
-    //     var filtered_country = table_data.filter(data => data.country === country_value);
-    //     var filtered_city = filtered_country.filter(data => data.city === city_value);
-    //     returnData(filtered_city);
-    // }
-    // else if (date_value == "Click to Select" && city_value == "Click to Select" && shape_value == "Click to Select") {
-    //     var filtered_country = table_data.filter(data => data.country === country_value);
-    //     var filtered_state = filtered_country.filter(data => data.state === state_value);
-    //     returnData(filtered_state);
-    // };
-
-    // if (date_value == "Click to Select" && country_value == "Click to Select" && state_value == "Click to Select" && city_value == "Click to Select") {
-    //     var filtered_shape = table_data.filter(data => data.shape === shape_value);
-    //     returnData(filtered_shape);
-    // }
-    // else if (date_value == "Click to Select" && country_value == "Click to Select" && state_value == "Click to Select" && shape_value == "Click to Select") {
-    //     var filtered_city = table_data.filter(data => data.city === city_value);
-    //     returnData(filtered_city);
-    // }
-    // else if (date_value == "Click to Select" && country_value == "Click to Select" && city_value == "Click to Select" && shape_value == "Click to Select") {
-    //     var filtered_state = table_data.filter(data => data.state === state_value);
-    //     returnData(filtered_state);
-    // }
-    // else if (date_value == "Click to Select" && state_value == "Click to Select" && city_value == "Click to Select" && shape_value == "Click to Select") {
-    //     var filtered_country = table_data.filter(data => data.country === country_value);
-    //     returnData(filtered_country);
-    // }
-    // else if (shape_value == "Click to Select" && country_value == "Click to Select" && city_value == "Click to Select" && shape_value == "Click to Select") {
-    //     var filtered_date = table_data.filter(data => data.date === date_value);
-    //     returnData(filtered_date);
-    // };
-
-    // if (date_value == "Click to Select" && country_value == "Click to Select" && state_value == "Click to Select" && city_value == "Click to Select" && shape_value == "Click to Select") {
-    // }
-    // else {
-    //     var filtered_date = table_data.filter(data => data.datetime === date_value);
-    //     var filtered_country = filtered_date.filter(data => data.country === country_value);
-    //     var filtered_state = filtered_country.filter(data => data.state === state_value);
-    //     var filtered_city = filtered_state.filter(data => data.city === city_value);
-    //     var filtered_shape = filtered_city.filter(data => data.shape === shape_value);
-    //     returnData(filtered_shape);
-    // };
-
-    // Filter the dataset to return the results for the date selected
-    // if (date_value.length > 0) {
-    //     var filtered_date = table_data.filter(data => data.datetime === date_value);
-    //     returnData(filtered_date);
-    // }
-
-    // if (date_value.length > 0) {
-    //     var filtered_date = table_data.filter(data => data.datetime === date_value);
-    //     returnData(filtered_date);
-    // }
-
-    // var filtered_country = filtered_date.filter(data => data.country === country_value);
-    // returnData(filtered_country);
-    // var filtered_state = filtered_country.filter(data => data.state === state_value);
-    // returnData(filtered_state);
-    // var filtered_city = filtered_state.filter(data => data.city === city_value);
-    // returnData(filtered_city);
-    // var filtered_shape = filtered_city.filter(data => data.shape === shape_value);
-    // console.log(filtered_date);
-    // returnData(filtered_shape);
+    datetime = "";
+    country = "";
+    state = "";
+    city = "";
+    shape = "";
 }
 
 function returnData(data) {

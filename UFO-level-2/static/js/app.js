@@ -131,9 +131,38 @@ function searchData() {
             returnData(filter_shape);
         }
     }
-    if (datetime !== "") {
-        var filter_date = table_data.filter(data => data.datetime === datetime);
-        returnData(filter_date);
+    if (country !== "") {
+        var filter_country = table_data.filter(data => data.country === country);
+        returnData(filter_country);
+        if (country !== "" && state !== "") {
+            var filter_state = filter_country.filter(data => data.state === state);
+            returnData(filter_state);
+            if (country !== "" && state !== "" && city !== "") {
+                var filter_city = filter_state.filter(data => data.city === city);
+                returnData(filter_city);
+                if (country !== "" && state !== "" && city !== "" && shape !== "") {
+                    var filter_shape = filter_city.filter(data => data.shape === shape);
+                    returnData(filter_shape);
+                }
+            }
+            if (country !== "" && state !== "" && shape !== "") {
+                var filter_shape = filter_state.filter(data => data.shape === shape);
+                returnData(filter_shape);
+            }
+        }
+        if (country !== "" && city !== "") {
+            var filter_city = filter_country.filter(data => data.city === city);
+            returnData(filter_city);
+            if (country !== "" && city !== "" && shape !== "") {
+                var filter_shape = filter_city.filter(data => data.shape === shape);
+                returnData(filter_shape);
+            }
+        }
+        if (country !== "" && shape !== "") {
+            var filter_shape = filter_country.filter(data => data.shape === shape);
+            returnData(filter_shape);
+        }
+    }
     
     //var check = [{ "datetime": datetime, "country": country, "state": state, "city": city, "shape": shape }]
     

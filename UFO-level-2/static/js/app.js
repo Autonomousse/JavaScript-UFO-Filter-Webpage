@@ -4,7 +4,7 @@ var table_data = data;
 // Use the map function to create a new array with all of the item values from the dataset.
 // Call the createArrays function to retreive options to display on the dropdown for users to select from.
 var date = table_data.map(dates => dates.datetime);
-var dateOptions = createOptions(date, "#date");
+createOptions(date, "#date");
 
 var country = table_data.map(countries => countries.country).sort();
 createOptions(country, "#country");
@@ -70,9 +70,12 @@ function searchData() {
 
     // Clear the error message.
     var error_msg = d3.select("h4");
-
-
     error_msg.text("");
+
+    /*  
+     *  Use a try, catch, and throw statement to let the user know if their selections have no results.
+     *  Use nested if/else if statements to search for every possible combination a user could enter and return a table or error.
+     */
     try {
         if (datetime !== "") {
             var filter_date = table_data.filter(data => data.datetime === datetime);
@@ -225,11 +228,14 @@ function searchData() {
             returnData(filter_shape);
         }
     }
+
+    // Catch statement to display message to the user. 
     catch (err) {
         error_msg.text(err);
     }
 }
 
+// Function that returns the data in a table format for given filters.
 function returnData(data) {
     // Select the table body by ID, where table rows will be created for each element
     var tbody = d3.select("tbody");

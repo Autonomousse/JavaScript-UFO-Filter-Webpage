@@ -4,7 +4,7 @@ var table_data = data;
 // Use the map function to create a new array with all of the item values from the dataset.
 // Call the createArrays function to retreive options to display on the dropdown for users to select from.
 var date = table_data.map(dates => dates.datetime);
-createOptions(date, "#date");
+var dateOptions = createOptions(date, "#date");
 
 var country = table_data.map(countries => countries.country).sort();
 createOptions(country, "#country");
@@ -68,8 +68,11 @@ function searchData() {
     var city = city_element.property("value");
     var shape = shape_element.property("value");
 
-    var h4 = d3.select("h4");
-    h4.text("");
+    // Clear the error message.
+    var error_msg = d3.select("h4");
+
+
+    error_msg.text("");
     try {
         if (datetime !== "") {
             var filter_date = table_data.filter(data => data.datetime === datetime);
@@ -222,8 +225,8 @@ function searchData() {
             returnData(filter_shape);
         }
     }
-    catch(err) {
-        h4.text(err);
+    catch (err) {
+        error_msg.text(err);
     }
 }
 

@@ -9,12 +9,30 @@ body {
   padding: 0;
   margin: 0;
   color: #ececec;
-  background-color: #30475e;
+  background-color: #222831;
+}
+
+.btn-default {
+  color: #ececec;
+  background-color: #222831;
+  border-color: #f2a365;
+}
+
+.filter-bottom-border {
+  margin-bottom: 5px;
+}
+
+.panel {
+  border-width: 1px;
+  background-color: #222831;
+  padding: 5px;
+  border: 2px solid #f2a365;
 }
 
 .panel-default>.panel-heading {
   background-color: #222831;
   color: #ececec;
+  border-color: #f2a365;
 }
 
 .form-group {
@@ -40,7 +58,7 @@ form {
   bottom: 0;
   left: 0;
   min-height: 100px;
-  background: #4e5d6c;
+  background: #222831;
 }
 
 /* The code styles the text at the bottom of the footer */
@@ -50,12 +68,13 @@ form {
   bottom: 0;
   left: 0;
   padding: 5px;
-  background: #1b3146;
+  background: #30475e;
 }
 
 .navbar {
   padding: 5px;
   margin: 0;
+  background-color: #222831;
 }
 
 /* This CSS styles the ufo icon in the navbar */
@@ -85,11 +104,18 @@ select {
   width: 100%;
   padding: 8px;
   color: #222831;
+  background-color: #ececec;
   outline: none;
+}
+
+table, .table {
+  font-size: 14px;
 }
 
 #table-area th {
   text-align: center;
+  border-color: #f2a365;
+  color: #ececec;
 }
 
 #table-area th:first-child,

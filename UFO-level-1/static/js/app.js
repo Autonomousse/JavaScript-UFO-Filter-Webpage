@@ -11,7 +11,6 @@ var table_data = data;
 var dates = table_data.map(dates => dates.datetime);
 var unique_dates = Array.from(new Set(dates));
 var date_options = d3.select(".custom-select");
-//date_options.html("");
 unique_dates.forEach(date => date_options.append("option").text(`${date}`));
 
 // Select the button ID

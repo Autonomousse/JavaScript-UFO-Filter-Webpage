@@ -83,77 +83,77 @@ function searchData() {
             if (datetime !== "" && country !== "") {
                 var filter_country = filter_date.filter(data => data.country === country);
                 returnData(filter_country);
-                if (filter_country.length == 0) throw "Looks like nothing fits within your search parameter, please try again!";
+                if (filter_country.length == 0) throw "Sorry, your search parameters are out of this world! Please try again!";
                 if (datetime !== "" && country !== "" && state !== "") {
                     var filter_state = filter_country.filter(data => data.state === state);
                     returnData(filter_state);
-                    if (filter_state.length == 0) throw "Looks like nothing fits within your search parameter, please try again!";
+                    if (filter_state.length == 0) throw "Sorry, your search parameters are out of this world! Please try again!";
                     if (datetime !== "" && country !== "" && state !== "" && city !== "") {
                         var filter_city = filter_state.filter(data => data.city === city);
                         returnData(filter_city);
-                        if (filter_city.length == 0) throw "Looks like nothing fits within your search parameter, please try again!";
+                        if (filter_city.length == 0) throw "Sorry, your search parameters are out of this world! Please try again!";
                         if (datetime !== "" && country !== "" && state !== "" && city !== "" && shape !== "") {
                             var filter_shape = filter_city.filter(data => data.shape === shape);
                             returnData(filter_shape);
-                            if (filter_shape.length == 0) throw "Looks like nothing fits within your search parameter, please try again!";
+                            if (filter_shape.length == 0) throw "Sorry, your search parameters are out of this world! Please try again!";
                         }
                     }
                     else if (datetime !== "" && country !== "" && state !== "" && shape !== "") {
                         var filter_shape = filter_state.filter(data => data.shape === shape);
                         returnData(filter_shape);
-                        if (filter_shape.length == 0) throw "Looks like nothing fits within your search parameter, please try again!";
+                        if (filter_shape.length == 0) throw "Sorry, your search parameters are out of this world! Please try again!";
                     }
                 }
                 else if (datetime !== "" && country !== "" && city !== "") {
                     var filter_city = filter_country.filter(data => data.city === city);
                     returnData(filter_city);
-                    if (filter_city.length == 0) throw "Looks like nothing fits within your search parameter, please try again!";
+                    if (filter_city.length == 0) throw "Sorry, your search parameters are out of this world! Please try again!";
                     if (datetime !== "" && country !== "" && city !== "" && shape !== "") {
                         var filter_shape = filter_city.filter(data => data.shape === shape);
                         returnData(filter_shape);
-                        if (filter_shape.length == 0) throw "Looks like nothing fits within your search parameter, please try again!";
+                        if (filter_shape.length == 0) throw "Sorry, your search parameters are out of this world! Please try again!";
                     }
                 }
                 else if (datetime !== "" && country !== "" && shape !== "") {
                     var filter_shape = filter_country.filter(data => data.shape === shape);
                     returnData(filter_shape);
-                    if (filter_shape.length == 0) throw "Looks like nothing fits within your search parameter, please try again!";
+                    if (filter_shape.length == 0) throw "Sorry, your search parameters are out of this world! Please try again!";
                 }
             }
             else if (datetime !== "" && state !== "") {
                 var filter_state = filter_date.filter(data => data.state === state);
                 returnData(filter_state);
-                if (filter_state.length == 0) throw "Looks like nothing fits within your search parameter, please try again!";
+                if (filter_state.length == 0) throw "Sorry, your search parameters are out of this world! Please try again!";
                 if (datetime !== "" && state !== "" && city !== "") {
                     var filter_city = filter_state.filter(data => data.city === city);
                     returnData(filter_city);
-                    if (filter_city.length == 0) throw "Looks like nothing fits within your search parameter, please try again!";
+                    if (filter_city.length == 0) throw "Sorry, your search parameters are out of this world! Please try again!";
                     if (datetime !== "" && state !== "" && city !== "" && shape !== "") {
                         var filter_shape = filter_city.filter(data => data.shape === shape);
                         returnData(filter_shape);
-                        if (filter_shape.length == 0) throw "Looks like nothing fits within your search parameter, please try again!";
+                        if (filter_shape.length == 0) throw "Sorry, your search parameters are out of this world! Please try again!";
                     }
                 }
                 else if (datetime !== "" && state !== "" && shape !== "") {
                     var filter_shape = filter_state.filter(data => data.shape === shape);
                     returnData(filter_shape);
-                    if (filter_shape.length == 0) throw "Looks like nothing fits within your search parameter, please try again!";
+                    if (filter_shape.length == 0) throw "Sorry, your search parameters are out of this world! Please try again!";
                 }
             }
             else if (datetime !== "" && city !== "") {
                 var filter_city = filter_date.filter(data => data.city === city);
                 returnData(filter_city);
-                if (filter_city.length == 0) throw "Looks like nothing fits within your search parameter, please try again!";
+                if (filter_city.length == 0) throw "Sorry, your search parameters are out of this world! Please try again!";
                 if (datetime !== "" && city !== "" && shape !== "") {
                     var filter_shape = filter_city.filter(data => data.shape === shape);
                     returnData(filter_shape);
-                    if (filter_shape.length == 0) throw "Looks like nothing fits within your search parameter, please try again!";
+                    if (filter_shape.length == 0) throw "Sorry, your search parameters are out of this world! Please try again!";
                 }
             }
             else if (datetime !== "" && shape !== "") {
                 var filter_shape = filter_date.filter(data => data.shape === shape);
                 returnData(filter_shape);
-                if (filter_shape.length == 0) throw "Looks like nothing fits within your search parameter, please try again!";
+                if (filter_shape.length == 0) throw "Sorry, your search parameters are out of this world! Please try again!";
             }
         }
         else if (country !== "") {
@@ -162,37 +162,37 @@ function searchData() {
             if (country !== "" && state !== "") {
                 var filter_state = filter_country.filter(data => data.state === state);
                 returnData(filter_state);
-                if (filter_state.length == 0) throw "Looks like nothing fits within your search parameter, please try again!";
+                if (filter_state.length == 0) throw "Sorry, your search parameters are out of this world! Please try again!";
                 if (country !== "" && state !== "" && city !== "") {
                     var filter_city = filter_state.filter(data => data.city === city);
                     returnData(filter_city);
-                    if (filter_city.length == 0) throw "Looks like nothing fits within your search parameter, please try again!";
+                    if (filter_city.length == 0) throw "Sorry, your search parameters are out of this world! Please try again!";
                     if (country !== "" && state !== "" && city !== "" && shape !== "") {
                         var filter_shape = filter_city.filter(data => data.shape === shape);
                         returnData(filter_shape);
-                        if (filter_shape.length == 0) throw "Looks like nothing fits within your search parameter, please try again!";
+                        if (filter_shape.length == 0) throw "Sorry, your search parameters are out of this world! Please try again!";
                     }
                 }
                 else if (country !== "" && state !== "" && shape !== "") {
                     var filter_shape = filter_state.filter(data => data.shape === shape);
                     returnData(filter_shape);
-                    if (filter_shape.length == 0) throw "Looks like nothing fits within your search parameter, please try again!";
+                    if (filter_shape.length == 0) throw "Sorry, your search parameters are out of this world! Please try again!";
                 }
             }
             else if (country !== "" && city !== "") {
                 var filter_city = filter_country.filter(data => data.city === city);
                 returnData(filter_city);
-                if (filter_city.length == 0) throw "Looks like nothing fits within your search parameter, please try again!";
+                if (filter_city.length == 0) throw "Sorry, your search parameters are out of this world! Please try again!";
                 if (country !== "" && city !== "" && shape !== "") {
                     var filter_shape = filter_city.filter(data => data.shape === shape);
                     returnData(filter_shape);
-                    if (filter_shape.length == 0) throw "Looks like nothing fits within your search parameter, please try again!";
+                    if (filter_shape.length == 0) throw "Sorry, your search parameters are out of this world! Please try again!";
                 }
             }
             else if (country !== "" && shape !== "") {
                 var filter_shape = filter_country.filter(data => data.shape === shape);
                 returnData(filter_shape);
-                if (filter_shape.length == 0) throw "Looks like nothing fits within your search parameter, please try again!";
+                if (filter_shape.length == 0) throw "Sorry, your search parameters are out of this world! Please try again!";
             }
         }
         else if (state !== "") {
@@ -201,17 +201,17 @@ function searchData() {
             if (state !== "" && city !== "") {
                 var filter_city = filter_state.filter(data => data.city === city);
                 returnData(filter_city);
-                if (filter_city.length == 0) throw "Looks like nothing fits within your search parameter, please try again!";
+                if (filter_city.length == 0) throw "Sorry, your search parameters are out of this world! Please try again!";
                 if (state !== "" && city !== "" && shape !== "") {
                     var filter_shape = filter_city.filter(data => data.shape === shape);
                     returnData(filter_shape);
-                    if (filter_shape.length == 0) throw "Looks like nothing fits within your search parameter, please try again!";
+                    if (filter_shape.length == 0) throw "Sorry, your search parameters are out of this world! Please try again!";
                 }
             }
             else if (state !== "" && shape !== "") {
                 var filter_shape = filter_state.filter(data => data.shape === shape);
                 returnData(filter_shape);
-                if (filter_shape.length == 0) throw "Looks like nothing fits within your search parameter, please try again!";
+                if (filter_shape.length == 0) throw "Sorry, your search parameters are out of this world! Please try again!";
             }
         }
         else if (city !== "") {
@@ -220,7 +220,7 @@ function searchData() {
             if (city !== "" && shape !== "") {
                 var filter_shape = filter_city.filter(data => data.shape === shape);
                 returnData(filter_shape);
-                if (filter_shape.length == 0) throw "Looks like nothing fits within your search parameter, please try again!";
+                if (filter_shape.length == 0) throw "Sorry, your search parameters are out of this world! Please try again!";
             }
         }
         else if (shape !== "") {

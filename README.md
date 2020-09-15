@@ -41,5 +41,5 @@ You can handle this... right? The planet Earth needs to know what we have found!
 
 ### Dataset
 
-* [UFO Sightings Data](static/js/data.js)
+* [UFO Sightings Data](UFO-level-2/static/js/data.js)
 

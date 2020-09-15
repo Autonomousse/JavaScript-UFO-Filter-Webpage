@@ -1,5 +1,5 @@
 # JavaScript - UFO Sighting Table
-Creating filtered table outputs utilizing JavaScript and DOM manipulation.
+Creating filtered table outputs utilizing JavaScript, HTML, CSS, D3.js, and DOM manipulation.
 
 ## Live Github Page (https://autonomousse.github.io/javascript-challenge/)
 

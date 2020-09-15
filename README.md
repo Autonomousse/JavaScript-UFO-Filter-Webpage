@@ -1,5 +1,5 @@
-# javascript-challenge
-JavaScript Challenge - JavaScript and DOM Manipulation
+# JavaScript - UFO Sighting Table
+Creating filtered table outputs utilizing JavaScript and DOM manipulation.
 
 ## Live Github Page (https://autonomousse.github.io/javascript-challenge/)
 

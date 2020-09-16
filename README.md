@@ -1,7 +1,7 @@
 # JavaScript - UFO Filter Webpage
 Creating filtered table outputs utilizing JavaScript, HTML, CSS, D3.js, and DOM manipulation.
 
-## Live Github Page (https://autonomousse.github.io/javascript-challenge/)
+## Live Github Page (https://autonomousse.github.io/JavaScript-UFO-Filter-Webpage/)
 
 ## Background
 
